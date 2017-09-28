@@ -1,0 +1,161 @@
+body {
+      margin: 0;
+      padding: 0;
+      background: #fff !important;
+    }
+
+    .content1 img {
+      width: 400px;
+      height: 170px;
+      margin: 60px 0 0 0;
+    }
+
+    .stepsAway {
+      height: 108px;
+      width: 830px;
+      color: #393A3D;
+      font-size: 50px;
+      line-height: 54px;
+      font-family: Geogrotesque;
+      padding-top: 10px;
+    }
+
+    .toContinue {
+      width: 940px;
+      color: #393A3D;
+      font-size: 19px;
+      line-height: 24px;
+      margin: 42px 0 0 0;
+    }
+
+    ul {
+      -webkit-padding-start: 0;
+      -moz-padding-start: 0;
+    }
+
+    input[type=email],
+    select {
+      width: 460px;
+      height: 35px;
+      padding: 7px 0 8px 7px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: #393A3D;
+      font-size: 13px;
+      line-height: 20px;
+    }
+
+    input[type=text],
+    select {
+      width: 460px;
+      height: 35px;
+      padding: 7px 0 8px 7px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: #393A3D;
+      font-size: 13px;
+      line-height: 20px;
+    }
+
+    input[type=submit] {
+      width: 100px;
+      background-color: #2CA01C;
+      color: white;
+      padding: 6px 17px;
+      margin: 32px 0 0 0;
+      border: none;
+      border-radius: 4px;
+      font-size: 19px;
+      display: block;
+    }
+
+    input[type=submit]:disabled {
+      background-color: #babec5;
+      pointer-events: none;
+    }
+
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+
+    input[type=radio] {
+      height: 20px;
+      width: 20px;
+      border: 1px solid #BABEC5;
+      background-color: #FFFFFF;
+    }
+
+    ::-webkit-input-placeholder {
+/* Chrome/Opera/Safari */
+      height: 20px;
+      width: 89px;
+      color: #8D9096;
+      font-family: "AvenirNext forINTUIT";
+      font-size: 13px;
+      font-style: italic;
+      line-height: 20px;
+    }
+
+    .infoPrompt {
+      color: #393A3D;
+      font-size: 15px;
+      font-weight: bold;
+      line-height: 20px;
+      margin: 20px 0 0 0;
+
+    }
+
+    .disclaimer {
+      padding: 40px 0 120px 0;
+      height: 40px;
+      width: 940px;
+      color: #393A3D;
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    #firstField,
+    #secondField,
+    #email,
+    #postme {
+      width: 460px;
+      display: block;
+      margin-right: 20px;
+    }
+
+    #radio {
+      display: inline-block;
+      padding-bottom: 44px;
+      height: 40px;
+      width: 20px;
+      color: #393A3D;
+      font-family: Helvetica;
+      font-size: 15px;
+      line-height: 20px;
+      margin-left: 5px;
+    }
+
+    #yes {
+      width: 434px;
+      position: absolute;
+      padding-left: 0 0 0 5px;
+      color: #393A3D;
+      font-family: Helvetica;
+      font-size: 15px;
+      line-height: 20px;
+      display: inline-block;
+    }
+/* 09/24/17 */
+    input[type=submit]:disabled {
+  	background-color: #babec5;
+  	pointer-events: none;
+  	}
+  	input[type=submit]:hover {
+  	background-color: #45a049;
+  	}
