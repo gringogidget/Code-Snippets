@@ -73,7 +73,7 @@
 
     input[type=submit] {
       width: 100px;
-      background-color: #2CA01C;
+      background-color: green;
       color: white;
       padding: 6px 17px;
       margin: 32px 0 0 0;
@@ -84,12 +84,12 @@
     }
 
     input[type=submit]:disabled {
-      background-color: #babec5;
+      background-color: grey;
       pointer-events: none;
     }
 
     input[type=submit]:hover {
-      background-color: #45a049;
+      background-color: green;
     }
 
     input[type=radio] {
@@ -158,7 +158,7 @@
       font-size: 15px;
       line-height: 20px;
     }
-/* 09/24/17 */
+/* 09/24/17
     input[type=submit]:disabled {
   	background-color: #babec5;
   	pointer-events: none;
@@ -166,6 +166,7 @@
   	input[type=submit]:hover {
   	background-color: #45a049;
   	}
+    */
 </style>
 
 
@@ -206,7 +207,7 @@
         </div>
         <div id="yes" style="padding-top: 38px;">Yes, I would like to opt-in to this marketing placement's pilot program.</div>
 
-        <input type="submit" value="Submit" id="postme" enabled>
+        <input type="submit" value="Submit" id="postme" disabled>
         <!--<input type="hidden" name="_fid_9" value="">-->
       </form>
     </div>
