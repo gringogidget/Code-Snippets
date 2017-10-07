@@ -1,0 +1,86 @@
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // $sections includes all of the container divs that relate to menu items.
+    var $sections = $('.container');
+    // The user scrolls
+    $(window).scroll(function() {
+      // currentScroll is the number of pixels the window has been scrolled
+      var currentScroll = $(this).scrollTop();
+      // $currentSection is somewhere to place the section we must be looking at
+      var $currentSection
+      // We check the position of each of the divs compared to the windows scroll positon
+      $sections.each(function() {
+        // divPosition is the position down the page in px of the current section we are testing
+        var divPosition = $(this).offset().top;
+        // If the divPosition is less the the currentScroll position the div we are testing has moved above the window edge.
+        // the -1 is so that it includes the div 1px before the div leave the top of the window.
+        if (divPosition - 1 < currentScroll) {
+          // We have either read the section or are currently reading the section so we'll call it our current section
+          $currentSection = $(this);
+          // If the next div has also been read or we are currently reading it we will overwrite this value again. This will leave us with the LAST div that passed.
+        }
+        // This is the bit of code that uses the currentSection as its source of ID
+        var id = $currentSection.attr('id');
+        $('a').removeClass('active');
+        $("[href=#" + id + "]").addClass('active');
+      })
+    });
+  });
+</script>
+
+<div class="nav">
+
+		<ul id="top-menu">
+			<li><a href="#one" class="links">Menu 1</a></li>
+			<li><a href="#two" class="links">Menu 2</a></li>
+			<li><a href="#three" class="links">Menu 3</a></li>
+			<li><a href="#four" class="links">Menu 4</a></li>
+			<li><a href="#five" class="links">Menu 5</a></li>
+			<li><a href="#six" class="links">Menu 6</a></li>
+		</ul>
+	</div>
+	<div id="wrapper">
+		<div id="one" class="container">
+			one
+		</div>
+		<div id="two" class="container">
+			two
+		</div>
+		<div id="three" class="container">
+			three
+		</div>
+		<div id="four" class="container">
+			four
+		</div>
+		<div id="five" class="container">
+			five
+		</div>
+		<div id="six" class="container">
+			six
+		</div>
+	</div>
+<style>
+  .nav{
+    position: fixed;
+}
+.nav ul{
+	width: 150px;
+	list-style-type: none;
+	background: rgba(200,200,200,0.2);
+    border-radius: 5px;
+}
+/* just the content */
+.container{
+	width: 800px;
+	height: 600px;
+	margin: 0px auto;
+    background: rgba(200,200,200,0.2);
+    border-bottom: 1px solid rgba(200,200,200,1);
+    padding: 20px;
+}
+.active{
+    border-bottom: 3px solid green;
+    font-weight: bolder;
+}
+</style>
