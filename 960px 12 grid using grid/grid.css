@@ -1,0 +1,56 @@
+* {box-sizing: border-box;}
+.wrapper {
+  max-width: 940px;
+  margin: 0 auto;
+  padding-top: .75%;
+}
+
+.wrapper > div {
+  border: 1px solid #FF69B4;
+  border-radius: 2px;
+  background-color: pink;
+  padding: 1em;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: ;
+  grid-gap: 10px;
+
+}
+.one {
+  grid-area: 1;
+}
+.two {
+  grid-area: 1;
+}
+.three {
+  grid-area: 1;
+}
+.four {
+  grid-area: 1;
+}
+.five {
+  grid-area: 1;
+}
+.six {
+  grid-area: 1;
+}
+.seven {
+  grid-area: 1;
+}
+.eight {
+  grid-area: 1;
+}
+.nine {
+  grid-area: 1;
+}
+.ten {
+  grid-area: 1;
+}
+.eleven {
+  grid-area: 1;
+}
+.twelve {
+  grid-area: 1;
+}
