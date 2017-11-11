@@ -1,0 +1,24 @@
+.col-xs-4 {
+    background: green;
+    height: 200px;
+  /*margin: 0 auto;*/
+  /*float:none;*/
+}
+
+[class*="col"] {
+    height: 200px;
+    background:green;
+/*  float:none;*/
+  }
+  /* either add "float-none on the specific column or attribute selector above or add a style for center-block with float:none */
+
+.center-block {
+  float:none;
+}
+h3 {
+  text-align:center;
+  margin-top: 40px;
+}
+.example2 {
+  margin-top: 20px;
+}
