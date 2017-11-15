@@ -1,0 +1,355 @@
+<template type=text/qss>
+  div @ 200 {
+    background: lime;
+  }
+  div @ 350 {
+    background: black;
+  }
+</template>
+
+<div class="hundred">100% width</div>
+<div class="fifty">1/2 width</div>
+<div class="third">1/3 width</div>
+<div class="quarter">1/4 width</div>
+
+<style>
+body {
+  background: grey;
+}
+
+div {
+  color: darkgrey;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20pt;
+  padding: 1em;
+  margin: 1em 0;
+  text-align: center;
+}
+
+.fifty {
+  width: 50%;
+  text-align: center;
+}
+
+.third {
+  width: 33.33%;
+  text-align: center;
+}
+
+.quarter {
+  width: 25%;
+  text-align: center;
+}
+</style>
+
+<script>
+  function getStyles() {
+
+  // Grab the text to be read
+  var qss = document.querySelectorAll('template[type="text/qss"]')
+
+  var stylesheet = ''
+
+  qss.forEach(tag => {
+
+    stylesheet += tag.innerHTML
+                     .replace(/&lt;/g, '<')
+                     .replace(/&gt;/g, '>')
+                     .replace(/&amp;/g, '&')
+
+  })
+
+  return stylesheet
+
+}
+
+function lexer(code) {
+
+  // Split string into characters
+  var stream = code.split('')
+
+  // Prepare to read characters
+  var tokens = []
+
+  // Known characters and types
+  var syntax = {
+    whitespace: `\n⭿`,
+    word: `abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,;.:()[]_"' 	!`,
+    number: `1234567890`,
+    block: `{}`,
+    punctuation: ``,
+    operator: `+-*/=<>^%@#&|`
+  }
+
+  // Consume stream
+  stream.forEach(data => {
+
+    for (type in syntax) {
+
+      if (syntax[type].indexOf(data) !== -1) {
+
+        tokens.push({
+          data: data,
+          type: type
+        })
+
+      }
+
+    }
+
+  })
+
+  return tokens
+
+}
+
+function parser(tokens) {
+
+  var ast = []
+
+  var blockOpen = false
+  var selector = []
+  var block = []
+
+  // lump adjacent types together
+  tokens.forEach(token => {
+
+
+    if (blockOpen) {
+
+      if (selector.length > 0) {
+
+        ast.push({
+          type: 'selector',
+          data: selector
+        })
+        selector = []
+
+      }
+
+      if (token.type == 'block') {
+
+        ast.push({
+          type: 'block',
+          data: block
+        })
+
+        block = []
+
+      } else {
+
+        block.push(token)
+
+      }
+
+    } else {
+
+      if (token.type !== 'block') {
+
+        selector.push(token)
+
+      }
+
+    }
+
+    if (token.type == 'block') {
+
+      blockOpen = blockOpen ? false : true
+
+    }
+
+
+  })
+
+  ast = consolidate(ast)
+
+  return ast
+
+}
+
+function consolidate(ast) {
+
+  var grouped = []
+
+  ast.forEach(token => {
+
+    var current = []
+
+    if (token.type == 'selector') {
+
+      for (var i=0; i<token.data.length; i++) {
+
+        if (current.length && token.data[i].type == current[current.length-1].type) {
+
+          current[current.length-1].data += token.data[i].data
+
+        } else {
+
+          current.push(token.data[i])
+
+        }
+
+      }
+
+      grouped.push({
+        type: 'selector',
+        data: current
+      })
+
+    } else if (token.type == 'block') {
+
+      grouped.push({
+        type: 'block',
+        data: token
+      })
+
+    }
+
+  })
+
+  return grouped
+
+}
+
+function query(grouped) {
+
+  var selector = ''
+  var breakpoint = 0
+  var queries = []
+
+  grouped.forEach(item => {
+
+    if (item.type == 'selector') {
+
+      selector = ''
+
+      // Strip Whitespace
+      var data = stripWhitespace(item.data)
+      var end = data.length
+
+      if (
+
+        // If Last item is a number
+        data[end-1].type == 'number'
+
+        // And second-last item is @ operator
+        && data[end-2].type == 'operator' && data[end-2].data == '@'
+      ) {
+
+        for (var i=0; i<end-2; i++) {
+
+          selector += data[i].data
+
+        }
+
+        breakpoint = data[end-1].data
+
+      }
+
+    } else if (selector !== null && item.type == 'block') {
+
+      var rule = ''
+
+      for (var i=0; i<item.data.data.length; i++) {
+
+        //console.log(item.data.data)
+        rule += item.data.data[i].data.replace(/\n/g, '')
+
+      }
+
+      queries.push(`eq('${selector}', el => el.offsetWidth > ${breakpoint}, '${rule}')\n`)
+
+    }
+
+  })
+
+  return queries
+
+}
+
+function stripWhitespace(ast) {
+
+  for (var i=0; i<ast.length; i++) {
+
+    if (
+      // If whitespace token
+      ast[i].type == 'whitespace'
+
+      // Or an empty word
+      || ast[i].type == 'word' && ast[i].data.replace(/\s/g, '') == ''
+    ) {
+
+      ast.splice(i, 1)
+
+    }
+
+  }
+
+  return ast
+
+}
+
+function apply(queries) {
+
+  var style = ''
+
+  queries.forEach(command => {
+
+    style += new Function('return ' + command)()
+
+  })
+
+  return style
+
+}
+
+window.addEventListener('load', JSinCSS)
+window.addEventListener('resize', JSinCSS)
+window.addEventListener('input', JSinCSS)
+window.addEventListener('click', JSinCSS)
+
+function JSinCSS() {
+
+  var tag = document.querySelector('#JSinCSS')
+
+  if (!tag) {
+
+    tag = document.createElement('style')
+    tag.id = 'JSinCSS'
+    document.head.appendChild(tag)
+
+  }
+
+  tag.innerHTML = apply(query(parser(lexer(getStyles()))))
+
+}
+
+function eq(selector, test, rule) {
+
+  var tag = document.querySelectorAll(selector)
+  var style = ''
+  var count = 0
+
+  for (var i=0; i<tag.length; i++) {
+
+    var attr = (selector+test).replace(/\W+/g, '')
+
+    if (test(tag[i])) {
+
+      tag[i].setAttribute(`data-${attr}`, count)
+      style += `[data-${attr}="${count}"] { ${rule} }`
+      count++
+
+    } else {
+
+      tag[i].setAttribute(`data-${attr}`, '')
+
+    }
+
+  }
+
+  return style
+
+}
+</script>
+    
