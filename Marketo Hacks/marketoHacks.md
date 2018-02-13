@@ -52,8 +52,11 @@ solid;border-bottom-style: solid;border-left-style: solid;border-top-color:${cta
 ```
 <hr>
 <h3>A two-column footer</h3>
+
+
 The only way I could get a two-column footer to work responsively was to mark up a table. Percentages work within `table` but won't work with `em` or `rem` for some reason. `em` will work within the `img` tag, though. This is a flippin' mess, but it works. The way Marketo spits out code after you put it into the text editor is a vomit of `&nbsp;` and `<br>`s. 🤯
 eg:
+
 ```
 <table width="85% !important" height="auto">
   <tbody>
