@@ -21,3 +21,32 @@ solid;border-right-style: solid;border-bottom-style: solid;border-left-style: so
 </tr>
 -->
 ```
+This works only some of the time. If it doesn't work, you can also try `display: none;` under the `td style`
+eg:
+```
+<td class="cta" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse; display:none;">...</td>
+```
+
+<h3>To left-align a centered CTA</h3>
+
+There is no option in the modules to left-align a CTA. I hacked it by adjusting `align` to left rather than center in the `td style` and the `table style`.
+eg:
+```
+<tr style="outline: medium none;">
+  <td class="cta" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse;">
+    <div style="text-align:left">
+      <table style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; border-collapse: collapse; margin-top: 0; margin-right: auto; margin-bottom: 0; margin-left: auto;" align="left"
+        border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens: none; border-collapse: collapse;" align="left" bgcolor="${ctaButtonBackgroundColor}">
+            <a href="${ctaLink}" target="_blank" class="primary-font button" style="-webkit-text-size-adjust:
+100%;-ms-text-size-adjust: 100%;border-left-color:${ctaBorderColor};font-size: 14px;font-family:'Raleway', Arial, sans-serif;color: #ffffff;padding-top: 12px;padding-right: 18px;padding-bottom: 12px;padding-left: 18px;border-top-width:${ctaBorderSize};display: inline-block;border-bottom-width:${ctaBorderSize};border-left-width:${ctaBorderSize};border-top-style: solid;border-right-style:
+solid;border-bottom-style: solid;border-left-style: solid;border-top-color:${ctaBorderColor};border-right-color:${ctaBorderColor};border-bottom-color:${ctaBorderColor};border-right-width:${ctaBorderSize};text-decoration: none;background-color:${ctaButtonBackgroundColor};">${ctaLinkText}</a>              </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </td>
+</tr>
+```
