@@ -1,4 +1,13 @@
 <h1>A front-end developer's guide to hacking Marketo's email platform.</h1>
+
+<h3>Correcting nav colour disappearance when you save an email as a template</h3>
+
+Ah, great. None of the colours you applied are working. Worry no more. If you can find the stand alone `tr` inside your `table` with a `table600` class, you can simplhy add a style to that `tr` of background-color and #000 (colour).
+
+In this particular case, I'm creating a background colour on a png logo. 
+
+<hr>
+
 <h3>Removing CTAs</h3>
 
 If you'd need to remove a CTA, you have to comment out the entire `table row` under the class of `cta`
