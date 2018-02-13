@@ -77,3 +77,7 @@ eg:
 </table>
 <p><span style="color: #ffffff;"><br /></span></p>
 ```
+<hr>
+<h3>Images</h3>
+
+Marketo emails don't support .svg. You'll have to use .png or .jpg.
