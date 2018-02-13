@@ -50,3 +50,27 @@ solid;border-bottom-style: solid;border-left-style: solid;border-top-color:${cta
   </td>
 </tr>
 ```
+<hr>
+<h3>A two-column footer</h3>
+The only way I could get a two-column footer to work responsively was to mark up a table. Percentages work within `table` but won't work with `em` or `rem` for some reason. `em` will work within the `img` tag, though. This is a flippin' mess, but it works. The way Marketo spits out code after you put it into the text editor is a vomit of `&nbsp;` and `<br>`s. 🤯
+eg:
+```
+<table width="85% !important" height="auto">
+  <tbody>
+    <tr>
+      <td><span style="color: #ffffff;"> <br /><br /><br /><img style="width: 13em;" src="#" /> </span><br /></td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td><span style="color: #ffffff;">A SaaS Product</span><br /><span style="color: #ffffff;"><br />Follow Us&nbsp;&nbsp;</span> <span><a href="https://twitter.com/company" target="_blank">
+<img style="width: 2em;" src="#" /></a>&nbsp; &nbsp;&nbsp;</span>
+        <span> <img style="width: 1em;" src="#"/>&nbsp; &nbsp;&nbsp;</span><span><img style="width: 2em;" src="#" />&nbsp;&nbsp;&nbsp;</span>
+        <span>
+<img style="width: 2em;" src="#" /></span><br /><br /><br /></td>
+      <td style="vertical-align: top;"><br /></td>
+    </tr>
+  </tbody>
+</table>
+<p><span style="color: #ffffff;"><br /></span></p>
+```
