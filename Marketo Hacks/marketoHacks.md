@@ -6,6 +6,10 @@ Ah, great. None of the colours you applied are working. Worry no more. If you ca
 
 In this particular case, I'm creating a background colour on a png logo. 
 
+My `m_spacer`s also abandoned the colours I had selected. under the `table` class of `m_spacer` I styled the direct descendant `td` with a background-color tag.
+
+The depreciated `<center>` tag that Marketo uses also will accept a background-color styling.
+
 <hr>
 
 <h3>Removing CTAs</h3>
