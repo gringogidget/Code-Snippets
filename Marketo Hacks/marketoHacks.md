@@ -1,4 +1,4 @@
-<h1>This is a guide to hacking Marketo's email platform.</h1>
+<h1>A front-end developer's guide to hacking Marketo's email platform.</h1>
 <h3>Removing CTAs</h3>
 
 If you'd need to remove a CTA, you have to comment out the entire `table row` under the class of `cta`
